@@ -15,9 +15,35 @@ function TransactionForm(){
             .then((data) => {
                         console.log(data)
                     })
-            })
+            }, [])
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
 
+    return(
+        <div>
+        <form onSubmit={handleSubmit}>
+        <h1>Submit Transaction</h1>
+        <label htmlFor="accId">AccountId: </label>
+         <input
+        type="text"
+        id="account-id"
+        value={accId}
+        onChange={(e) => setAccId(e.target.value)}
+      />
+      <label   htmlFor="amount">Amount:</label>
+      <input
+        type="number"
+        id="amount"
+        value={amount}
+        onChange={(e) => setAmount(Number(e.target.value))}
+      />
+            <button onClick={handleSubmit}type="submit">Submit</button>
+                
+        </form>
+        </div>  
+    );
 
 }
 
