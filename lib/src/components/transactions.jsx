@@ -6,7 +6,7 @@ function TransactionForm(){
 
 
     useEffect(() => {
-        fetch (`https://infra.devskills.app/api/accounting/transaction${accountId}`.toString(),{
+        fetch (`https://infra.devskills.app/api/accounting/transaction${accId}`.toString(),{
             method: 'POST',
             "Content-Type": "application.json"
         })
@@ -15,7 +15,7 @@ function TransactionForm(){
             .then((data) => {
                         console.log(data)
                     })
-            }, [])
+            }, [accId])
     
     const handleSubmit = (e) => {
         e.preventDefault();
