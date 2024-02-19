@@ -15,7 +15,7 @@ api = Api(app)
 class  Acc(Resource):
     def get(self):
         accounts = [account.to_dict() for account in Account.query.all()]
-        return make_response(jsonify(plants), 200)
+        return make_response(jsonify(accounts), 200)
 
     def post(self):
         data = request.get_json()
