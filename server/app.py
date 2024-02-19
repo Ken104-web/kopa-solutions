@@ -14,8 +14,21 @@ api = Api(app)
 
 class  Acc(Resource):
     def get(self):
-        accounts = [account.to_dict() for account in Account.query.all()]
-        return make_response(jsonify(accounts), 200)
+        url = "https://infra.devskills.app/api/accounting/transactions"
+        r = request.get(url)
+
+        if r.status_code != 200:
+              return []
+        data = r.json
+        results = []
+
+        for result in data:
+            token = result.get["account_id"]
+            amount = result.get["amount"]
+
+            results.append({'Account_Id':token, "amount": amount,})
+        return results
+
 
     def post(self):
         data = request.get_json()
