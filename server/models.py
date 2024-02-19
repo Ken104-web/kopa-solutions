@@ -7,7 +7,7 @@ class Account(db.Model):
 
     id  = db.Column(db.Integer, primary_key=True)
     token = db.Column(db.Integer)
-    amount = db.column(db.Integer)
+    amount = db.Column(db.Integer)
 
     def __repr__(self):
         return f'<Account {self.token} | Amount: {self.amount}>'
