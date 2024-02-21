@@ -35,7 +35,7 @@ class  Acc(Resource):
         data = request.get_json()
 
         new_id = Account(
-            token=data["token"],
+            token=data['Account_Id'],
             amount = data['amount']
         )
         db.session.add(new_id)
