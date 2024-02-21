@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, make_response
 from flask_migrate import Migrate
 from flask_restful import Resource, Api
+import requests
 
 from models import db, Account
 
@@ -15,16 +16,16 @@ api = Api(app)
 class  Acc(Resource):
     def get(self):
         url = "https://infra.devskills.app/api/accounting/transactions"
-        r = request.get(url)
+        r = requests.get(url)
 
         if r.status_code != 200:
               return []
-        data = r.json
+        data = r.json()
         results = []
 
         for result in data:
-            token = result.get["account_id"]
-            amount = result.get["amount"]
+            token = result.get("account_id")
+            amount = result.get("amount")
 
             results.append({'Account_Id':token, "amount": amount,})
         return results
