@@ -37,9 +37,7 @@ class  Acc(Resource):
 
 
     def post(self):
-            headers = {'Content-Type': 'application/json'}
-
-            if headers['Content-Type'] == 'application/json':
+            if request.headers.get('Content-Type') != 'application/json':
                 return {'error': 'Content-Type must be application/json'}, 400
             
             data = request.get_json()
