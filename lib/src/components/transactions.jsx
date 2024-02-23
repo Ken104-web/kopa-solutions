@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState, useEffect} from "react";
 
 function TransactionForm(){
     const [accId, setAccId ] = useState('')
@@ -6,7 +6,7 @@ function TransactionForm(){
 
 
     useEffect(() => {
-        fetch (`https://infra.devskills.app/api/accounting/transaction${accId}`.toString(),{
+        fetch (`http://127.0.0.1:5000/account${accId}`.toString(),{
             method: 'POST',
             "Content-Type": "application.json"
         })
