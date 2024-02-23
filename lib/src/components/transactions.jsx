@@ -8,7 +8,7 @@ function TransactionForm(){
     useEffect(() => {
         fetch (`http://127.0.0.1:5000/account${accId}`.toString(),{
             method: 'POST',
-            "Content-Type": "application.json"
+            "Content-Type": "application/json"
         })
 
             .then((resp) => resp.json())

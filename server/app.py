@@ -10,11 +10,12 @@ app = Flask( __name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-CORS(app)
 
 migrate = Migrate(app, db)
 db.init_app(app)
 api = Api(app)
+CORS(app)
+
 
 
 class  Acc(Resource):
@@ -36,17 +37,22 @@ class  Acc(Resource):
 
 
     def post(self):
-        data = request.get_json()
+            headers = {'Content-Type': 'application/json'}
 
-        new_id = Account(
-            token=data['Account_Id'],
-            amount = data['amount']
-        )
-        db.session.add(new_id)
-        db.session.commit()
+            if headers['Content-Type'] == 'application/json':
+                return {'error': 'Content-Type must be application/json'}, 400
+            
+            data = request.get_json()
 
-        return make_response(new_id.to_dict(), 201)
-    
+            new_id = Account(
+                token=data['Account_Id'],
+                amount = data['amount']
+            )
+            db.session.add(new_id)
+            db.session.commit()
+
+            return make_response(new_id.to_dict(), 201)
+        
 api.add_resource(Acc, "/account")
 
 
