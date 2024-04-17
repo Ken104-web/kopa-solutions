@@ -36,14 +36,11 @@ class  Acc(Resource):
         return results
 
 
-    def post(self):
-            if request.headers.get('Content-Type') != 'application/json':
-                return {'error': 'Content-Type must be application/json'}, 400
-            
+    def post(self):            
             data = request.get_json()
 
             new_id = Account(
-                token=data['Account_Id'],
+                token=data['token'],
                 amount = data['amount']
             )
             db.session.add(new_id)

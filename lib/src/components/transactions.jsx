@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 function TransactionForm({onAddId}){
-    const [accId, setAccId ] = useState("")
+    const [token, setToken ] = useState("")
     const [amount, setAmount] = useState("")
 
     function handleSubmit(e){
@@ -20,6 +20,22 @@ function TransactionForm({onAddId}){
         .then((data) => onAddId(data))
     }
 
+    // useEffect(() => {
+    //     fetch (`http://127.0.0.1:5000/account${accId}`.toString(),{
+    //         method: 'POST',
+    //         "Content-Type": "application/json",
+    //         'Accept': 'application/json',
+    //     })
+
+    //         .then((resp) => resp.json())
+    //         .then((data) => {
+    //                     console.log(data)
+    //                 })
+    //         }, [accId])
+    
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // }
 
     return(
         <div>
@@ -28,9 +44,9 @@ function TransactionForm({onAddId}){
         <input
           type="text"
           name="token"
-          placeholder="Account Id"
-          value={accId}
-          onChange={(e) => setAccId(e.target.value)}
+          placeholder="Token"
+          value={token}
+          onChange={(e) => setToken(e.target.value)}
         />
         <input
           type="number"
