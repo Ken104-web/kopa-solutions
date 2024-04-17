@@ -1,25 +1,41 @@
 import React, {useState, useEffect} from "react";
 
 function TransactionForm(){
-    const [accId, setAccId ] = useState('')
-    const [amount, setAmount] = useState(0)
+    const [accId, setAccId ] = useState("")
+    const [amount, setAmount] = useState("")
 
-
-    useEffect(() => {
-        fetch (`http://127.0.0.1:5000/account${accId}`.toString(),{
-            method: 'POST',
-            "Content-Type": "application/json"
-        })
-
-            .then((resp) => resp.json())
-            .then((data) => {
-                        console.log(data)
-                    })
-            }, [accId])
-    
-    const handleSubmit = (e) => {
+    function handleSubmit(e){
         e.preventDefault();
+        fetch("/accounts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                token: token,
+                amount: amount,
+            }),
+        })
+        .then((r) => r,json())
+        .then((data) => console.log(data))
     }
+
+    // useEffect(() => {
+    //     fetch (`http://127.0.0.1:5000/account${accId}`.toString(),{
+    //         method: 'POST',
+    //         "Content-Type": "application/json",
+    //         'Accept': 'application/json',
+    //     })
+
+    //         .then((resp) => resp.json())
+    //         .then((data) => {
+    //                     console.log(data)
+    //                 })
+    //         }, [accId])
+    
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // }
 
     return(
         <div>
