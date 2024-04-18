@@ -1,6 +1,7 @@
 
 import './App.css'
 import TransactionForm from './components/transactions'
+import List from './components/list'
 function App() {
   
 
@@ -9,6 +10,7 @@ function App() {
     <>
       <div>
         <TransactionForm />
+      <List />
       </div>
       </>
   )
